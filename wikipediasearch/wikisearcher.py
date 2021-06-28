@@ -29,41 +29,41 @@ class WikiSearcher:
             wiki_clean_option(body_content)
             body_children = []
             for child in body_content.children:
-                if child.name is not None and child.name != 'style' and child.name != 'h3':
+                if child.name is not None and child.name not in ['style', 'h3']:
                     body_children.append(child)
             peekable_children = peekable(body_children)
             options = {}
+            prev_key = None
             for child in peekable_children:
-                peek_child = peekable_children.peek()
+                peek_child = None
+                try:
+                    peek_child = peekable_children.peek()
+                except StopIteration:
+                    print('Iteration done.')
                 if child.name == 'p' or child.name == 'h2':
-                    if child.name == 'p' and peek_child.name != 'h2':
-                        a_tag = child.find('a')
-                        if a_tag is not None:
-                            article_link = ArticleLink(child.text, a_tag.attrs['href'])
-                            options[child.text.strip()] = article_link
-                        else:
-                            ul_tag = next(peekable_children)
-                        li_tags = ul_tag.find_all('li', recursive=False)
-                        options[child.text.strip()] = []
-                        for li in li_tags:
-                            a_tag = has_link(li)
-                            if a_tag is None:
-                                options[child.text.strip()].append(li.text + ' (no other link)')
-                            else:
-                                article_link = ArticleLink(li.text, a_tag.attrs['href'])
-                                options[child.text.strip()].append(article_link)
+                    prev_key = child.text.strip()
+                    a_tag = child.find('a')
+                    if a_tag is not None:
+                        prev_key = f'{prev_key} (already a description select for more info.)'
+                        options[prev_key] = []
+                        article_link = ArticleLink(a_tag.attrs['title'], a_tag.attrs['href'])
+                        options[prev_key].append(article_link)
+                    else:
+                        if peek_child.name  in ['p', 'h2']:
+                            prev_key = f'{prev_key} (already a description)'
+                            options[prev_key] = None
 
-                    elif peek_child.name == 'ul':
-                        ul_tag = next(peekable_children)
-                        li_tags = ul_tag.find_all('li', recursive=False)
-                        options[child.text.strip()] = []
-                        for li in li_tags:
-                            a_tag = has_link(li)
-                            if a_tag is None:
-                                options[child.text.strip()].append(li.text + ' (no other link)')
-                            else:
-                                article_link = ArticleLink(li.text, a_tag.attrs['href'])
-                                options[child.text.strip()].append(article_link)
+
+                else:
+                    options[prev_key] = []
+                    li_tags = child.find_all('li', recursive=False)
+                    for li in li_tags:
+                        a_tag = has_link(li)
+                        if a_tag is None:
+                            options[prev_key].append(li.text + ' (no other link)')
+                        else:
+                            article_link = ArticleLink(li.text, a_tag.attrs['href'])
+                            options[prev_key].append(article_link)
             
             return options
                             
