@@ -1,5 +1,6 @@
 from wikipediasearch.wikisearcher import WikiSearcher
 from pprint import pprint
+from sys import argv
 
 search = WikiSearcher()
 
