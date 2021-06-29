@@ -29,7 +29,7 @@ class WikiSearcher:
             wiki_clean_option(body_content)
             body_children = []
             for child in body_content.children:
-                if child.name is not None and child.name not in ['style', 'h3']:
+                if child.name is not None and child.name not in ['style', 'h3', 'h4']:
                     body_children.append(child)
             wiki_clean_option_p(body_children)
             peekable_children = peekable(body_children)
