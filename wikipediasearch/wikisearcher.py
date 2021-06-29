@@ -31,6 +31,7 @@ class WikiSearcher:
             for child in body_content.children:
                 if child.name is not None and child.name not in ['style', 'h3']:
                     body_children.append(child)
+            wiki_clean_option_p(body_children)
             peekable_children = peekable(body_children)
             options = {}
             prev_key = None
@@ -39,7 +40,9 @@ class WikiSearcher:
                 try:
                     peek_child = peekable_children.peek()
                 except StopIteration:
-                    print('Iteration done.')
+                    pass
+                if child.name == 'p' and peek_child.name == 'h2':
+                    continue
                 if child.name == 'p' or child.name == 'h2':
                     prev_key = child.text.strip()
                     a_tag = child.find('a')
@@ -56,13 +59,26 @@ class WikiSearcher:
 
                 else:
                     options[prev_key] = []
-                    li_tags = child.find_all('li', recursive=False)
+                    ul_tags = []
+                    ul_tags.append(child)
+                    try:
+                        while peek_child is not None and peek_child.name == 'ul':
+                            ul_tags.append(next(peekable_children))
+                            peek_child = peekable_children.peek()
+                        
+                    except StopIteration:
+                        pass
+                    li_tags = []
+                    for ul in ul_tags:
+                        lis = ul.find_all('li', recursive=False)
+                        if lis is not None:
+                            li_tags.extend(lis)
                     for li in li_tags:
                         a_tag = has_link(li)
                         if a_tag is None:
                             options[prev_key].append(li.text + ' (no other link)')
                         else:
-                            article_link = ArticleLink(li.text, a_tag.attrs['href'])
+                            article_link = ArticleLink(a_tag.attrs['title'], a_tag.attrs['href'])
                             options[prev_key].append(article_link)
             
             return options

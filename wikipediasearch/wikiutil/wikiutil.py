@@ -1,4 +1,6 @@
+from more_itertools import peekable
 from bs4.element import NavigableString, Tag
+from pprint import pprint
 
 def wiki_clean_option(body_content):
     p_empty_elt = body_content.find('p', class_='mw-empty-elt')
@@ -17,6 +19,16 @@ def wiki_clean_option(body_content):
         else:
             if element is not None:
                 element.decompose()
+def wiki_clean_option_p(filtered_body_content):
+    prev_element = None
+    for i, element in enumerate(filtered_body_content):
+        if element.name == 'h2':
+            prev_element = element.name
+        elif element.name == 'p' and prev_element != None:
+            filtered_body_content.pop(i)
+            continue
+        else:
+            prev_element = None
 
 
 def wiki_clean_desc(body_content):
@@ -49,6 +61,8 @@ def has_link(tag):
         raise NameError('Invalid tag.')
     a_tag = tag.find('a')
     return a_tag
+
+
 
 
 if __name__ == '__main__':
