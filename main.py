@@ -1,7 +1,6 @@
 from wikipediasearch.wikisearcher import WikiSearcher
 from wikipediasearch.wikiutil.report import *
 import argparse
-import re
 
 parser = argparse.ArgumentParser(
     description='Search information from Wikipedia')
