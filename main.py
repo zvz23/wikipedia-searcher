@@ -3,12 +3,12 @@ from wikipediasearch.wikiutil.report import *
 import argparse
 import re
 
-parser = argparse.ArgumentParser(description='Search information from Wikipedia')
+parser = argparse.ArgumentParser(
+    description='Search information from Wikipedia')
 parser.add_argument('-s', type=str, help='Search string')
 parser.add_argument('-main', type=str, help='Search option main')
 parser.add_argument('-sub', type=int, help='Search option sub')
 args = parser.parse_args()
-
 
 
 search = WikiSearcher()
@@ -39,9 +39,8 @@ else:
                 else:
                     raise KeyError
             else:
-                print(stringify_sub_options(result, args.main))                
+                print(stringify_sub_options(result, args.main))
         except KeyError:
             print('Key Error: Invalid option')
     else:
         print(stringify_main_options(result))
-
