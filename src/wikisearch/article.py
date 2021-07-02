@@ -12,6 +12,3 @@ class ArticleLink:
 
     def __str__(self):
         return self.__link
-
-if __name__ == '__main__':
-    pass

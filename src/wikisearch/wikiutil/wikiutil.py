@@ -1,4 +1,3 @@
-from more_itertools import peekable
 from bs4.element import NavigableString, Tag
 from pprint import pprint
 
@@ -64,7 +63,3 @@ def has_link(tag):
     return a_tag
 
 
-
-
-if __name__ == '__main__':
-    pass
