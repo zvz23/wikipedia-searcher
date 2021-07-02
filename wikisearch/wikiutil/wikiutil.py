@@ -2,6 +2,7 @@ from more_itertools import peekable
 from bs4.element import NavigableString, Tag
 from pprint import pprint
 
+
 def wiki_clean_option(body_content):
     p_empty_elt = body_content.find('p', class_='mw-empty-elt')
     table_content = body_content.find('div', class_='tocright')
