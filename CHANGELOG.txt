@@ -4,3 +4,9 @@ CHANGELOG
 0.0.1 (07/02/2021)
 ------------------
 - First Release
+
+0.0.2 (07/02/2021)
+
+Changed
+
+- removed redundant codes
