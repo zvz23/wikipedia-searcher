@@ -1,4 +1,4 @@
 # WikipediaSearcher
 
 ## About
-A script that scrapes Wikipedia to get information.
+A libray for scraping Wikipedia.
