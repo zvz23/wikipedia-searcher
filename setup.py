@@ -1,24 +1,22 @@
-from setuptools import setup, find_packages
+import setuptools
 
-classifiers = [
-    'Development Status :: 4 - Beta',
-    'Intended Audience :: Education',
-    'Operating System :: Microsoft :: Windows :: Windows 10',
-    'License :: OSI Approved :: MIT License',
-    'Programming Language :: Python :: 3'  
-]
+with open("README.md", "r", encoding="utf-8") as fh:
+    long_description = fh.read()
 
-setup(
-    name='wikisearcher',
-    version='0.0.1',
-    description='a library that scrapes wikipedia',
-    long_description = open('README.md').read() + '\n\n' + open('CHANGELOG.txt').read(),
-    url='',
-    author='Ziegfred Zorrilla',
-    author_email='ziegfredzorrilla23@gmail.com',
-    license='MIT',
-    classifiers=classifiers,
-    keywords='wikipediasearcher',
-    packages=find_packages(),
-    install_requires=['BeautifulSoup4', 'lxml', 'requests', 'more-itertools', 'pytest']
+setuptools.setup(
+    name="wikipedia-searcher",
+    version="0.0.1",
+    author="Ziegfred Zorrilla",
+    author_email="ziegfredzorrilla23@gmail.com",
+    description="A script that scrapes wikipedia",
+    long_description=long_description,
+    long_description_content_type="text/markdown",
+    classifiers=[
+        "Programming Language :: Python :: 3",
+        "License :: OSI Approved :: MIT License",
+        "Operating System :: OS Independent",
+    ],
+    package_dir={"": "src"},
+    packages=setuptools.find_packages(where="src"),
+    python_requires=">=3.9",
 )
