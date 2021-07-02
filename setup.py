@@ -9,7 +9,7 @@ classifiers = [
 ]
 
 setup(
-    name='wikipediasearch',
+    name='wikipediasearcher',
     version='0.0.1',
     description='a library that scrapes wikipedia',
     long_description = open('README.md').read() + '\n\n' + open('CHANGELOG.txt').read(),
