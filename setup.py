@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="wikipedia-searcher",
-    version="0.0.1",
+    version="0.0.2",
     author="Ziegfred Zorrilla",
     author_email="ziegfredzorrilla23@gmail.com",
     description="A script that scrapes wikipedia",
