@@ -6,5 +6,5 @@ test.html
 test.py
 dist
 dist/
-wikipediasearch.egg-info/
-wikipediasearch.egg-info
+wikisearcher.egg-info
+wikisearcher.egg-info/
