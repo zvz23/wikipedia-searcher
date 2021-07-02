@@ -4,3 +4,7 @@ __pycache__
 .pytest_cache
 test.html
 test.py
+dist
+dist/
+wikipediasearch.egg-info/
+wikipediasearch.egg-info
