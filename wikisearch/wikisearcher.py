@@ -1,9 +1,10 @@
 from bs4 import BeautifulSoup
+from more_itertools import peekable
 from .article import ArticleLink
 from .wikiutil.wikiutil import *
+
 import requests
-from pprint import pprint
-from more_itertools import peekable
+
 class WikiSearcher:
 
     def __init__(self):            
