@@ -10,3 +10,9 @@ CHANGELOG
 Changed
 
 - removed redundant codes
+
+0.0.3 (07/03/2021)
+
+Changed
+
+- fix install without dependencies
