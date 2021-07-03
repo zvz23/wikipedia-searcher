@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="wikipedia-searcher",
-    version="0.0.3",
+    version="0.0.11",
     author="Ziegfred Zorrilla",
     author_email="ziegfredzorrilla23@gmail.com",
     description="A script that scrapes wikipedia",
@@ -28,6 +28,6 @@ setuptools.setup(
         'requests==2.25.1',
         'soupsieve==2.2.1',
         'urllib3==1.26.6'
-    ]
+    ],
     python_requires=">=3.9",
 )
