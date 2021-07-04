@@ -1,14 +1,9 @@
 venv
-venv/
 __pycache__
 .pytest_cache
 test.html
 test.py
 dist
-dist/
 wikisearcher.egg-info
-wikisearcher.egg-info/
-src/wikipedia_searcher.egg-info/
 src/wikipedia_searcher.egg-info
-src/wikipedia_searcher.egg-info
-build/
+build
