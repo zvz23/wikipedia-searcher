@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup
 from more_itertools import peekable
 from .article import ArticleLink
 from .wikiutil.wikiutil import *
+import re
 
 import requests
 
@@ -11,7 +12,7 @@ class WikiSearcher:
         self.__URL_ROOT = 'https://en.wikipedia.org'
         self.__URL_SEARCH = 'https://en.wikipedia.org/wiki'
     
-    def search(self, search):
+    def search(self, search, verbose=False):
         search_url = ''
         if isinstance(search, ArticleLink):
             search_url = self.__URL_ROOT + search.link
@@ -24,8 +25,8 @@ class WikiSearcher:
         if body_content is None:
             return 'Invalid search. No result.'
         if 'most often refers to:' not in soup.text and 'may also refer to:' not in soup.text and 'may refer to:' not in soup.text:
-            wiki_clean_desc_recursive(body_content)
-            return body_content.p.text
+            description = self.__get_description_p_tag(body_content, verbose)
+            return description
         else:
             wiki_clean_option(body_content)
             body_children = []
@@ -84,8 +85,16 @@ class WikiSearcher:
             
             return options
                             
-
-                        
+    def __get_description_p_tag(self, body_content, verbose=False):
+        p_tags = body_content.find_all('p', attrs={'class': None}, recursive=False)
+        description = p_tags[0].text
+        if not verbose:
+            pass
+        else:
+            if len(p_tags) > 1:
+                description = p_tags[0].text + p_tags[1].text
+        description = re.sub('\[\d+\]', '', description)
+        return description                       
                               
                 
                 
