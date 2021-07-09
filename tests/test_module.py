@@ -10,7 +10,7 @@ def searcher():
 
 def test_method1(searcher):
     result = searcher.search('React.js')
-    assert "React (also known as React.js or ReactJS) is a free and open-source front-end JavaScript library[3] for building user interfaces or UI components." in result
+    assert "React (also known as React.js or ReactJS) is a free and open-source front-end JavaScript library" in result
 
 def test_method2(searcher):
     result = searcher.search('The Hills')
@@ -40,6 +40,9 @@ def test_method8(searcher):
     result = searcher.search('2001')
     assert '2001 (MMI) was a common year starting on Monday' in result
 
+def test_method9(searcher):
+    result = searcher.search('Philippines', verbose=True)
+    assert len(result) > 80
 
 
 
