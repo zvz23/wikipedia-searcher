@@ -25,7 +25,7 @@ class WikiSearcher:
         if body_content is None:
             return 'Invalid search. No result.'
         if 'most often refers to:' not in soup.text and 'may also refer to:' not in soup.text and 'may refer to:' not in soup.text:
-            description = self.__get_description_p_tag(body_content, verbose)
+            description = self.get_description_p_tag(body_content, verbose)
             return description
         else:
             wiki_clean_option(body_content)
