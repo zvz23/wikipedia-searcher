@@ -85,7 +85,7 @@ class WikiSearcher:
             
             return options
                             
-    def __get_description_p_tag(self, body_content, verbose=False):
+    def get_description_p_tag(self, body_content, verbose=False):
         p_tags = body_content.find_all('p', attrs={'class': None}, recursive=False)
         description = p_tags[0].text
         if not verbose:
