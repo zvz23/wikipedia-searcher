@@ -93,7 +93,7 @@ class WikiSearcher:
         else:
             if len(p_tags) > 1:
                 description = p_tags[0].text + p_tags[1].text
-        description = re.sub('\[\d+\]', '', description)
+        description = re.sub(r'\[\d+\]', '', description)
         return description                       
                               
                 
