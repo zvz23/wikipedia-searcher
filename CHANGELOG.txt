@@ -16,3 +16,9 @@ Changed
 Changed
 
 - fix install without dependencies
+
+0.0.4 (07/9/2021)
+
+Added
+
+- added verbose parameter to the search function
