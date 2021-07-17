@@ -15,6 +15,8 @@ class WikiSearcher:
     def search(self, search, verbose=False):
         search_url = ''
         if isinstance(search, ArticleLink):
+            if search.link is None:
+                return search.name
             search_url = self.__URL_ROOT + search.link
         else:
             search_replaced = search.replace(' ', '_')
@@ -23,7 +25,7 @@ class WikiSearcher:
         soup = BeautifulSoup(raw_html, 'lxml')
         body_content = soup.find('div', class_='mw-parser-output')
         if body_content is None:
-            return 'Invalid search. No result.'
+            return False
         if 'most often refers to:' not in soup.text and 'may also refer to:' not in soup.text and 'may refer to:' not in soup.text:
             description = self.get_description_p_tag(body_content, verbose)
             return description
@@ -78,11 +80,13 @@ class WikiSearcher:
                     for li in li_tags:
                         a_tag = has_link(li)
                         if a_tag is None:
-                            options[prev_key].append(li.text + ' (no other link)')
+                            #options[prev_key].append(li.text + ' (no other link)')
+                            article_link = ArticleLink(li.text + ' (no other link)', None)
                         else:
                             article_link = ArticleLink(a_tag.attrs['title'], a_tag.attrs['href'])
-                            options[prev_key].append(article_link)
-            
+                            #options[prev_key].append(article_link)
+                        options[prev_key].append(article_link)
+
             return options
                             
     def get_description_p_tag(self, body_content, verbose=False):
