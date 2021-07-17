@@ -34,7 +34,7 @@ def test_method6(searcher):
 
 def test_method7(searcher):
     result = searcher.search('adasdasdasdasd')
-    assert result == 'Invalid search. No result.'
+    assert result == False
 
 def test_method8(searcher):
     result = searcher.search('2001')
