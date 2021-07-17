@@ -4,7 +4,6 @@ MANIFEST.in
 README.md
 requirements.txt
 setup.py
-test.py
 .pytest_cache/README.md
 src/wikipedia_searcher.egg-info/PKG-INFO
 src/wikipedia_searcher.egg-info/SOURCES.txt
