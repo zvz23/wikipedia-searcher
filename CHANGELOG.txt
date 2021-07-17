@@ -22,3 +22,9 @@ Changed
 Added
 
 - added verbose parameter to the search function
+
+0.0.5 (07/17/2021)
+
+Changed
+
+- returns False if there are no results
