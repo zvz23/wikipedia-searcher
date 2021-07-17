@@ -1,12 +1,14 @@
 # wikipedia-searcher
 
-**wikipedia-searcher** is a library for scraping wikipedia information.
+**wikipedia-searcher** is a library for scraping wikipedia.
 
 ```python
 >>> from wikisearch.wikisearcher import WikiSearcher
 >>> searcher = WikiSearcher()
 >>> searcher.search('React.js')
 'React (also known as React.js or ReactJS) is a free and open-source front-end JavaScript library[3] for building user interfaces or UI components.'
+>>> search.search('React.js', verbose=True)
+'React (also known as React.js or ReactJS) is a free and open-source front-end JavaScript library for building user interfaces or UI components. It is maintained by Facebook and a community of individual developers and companies.React can be used as a base in the development of single-page or mobile applications.'
 ```
 
 If a search has has many options it returns a dictionary with a list of articles. You can can also pass the article to search.
@@ -15,7 +17,7 @@ If a search has has many options it returns a dictionary with a list of articles
 >>> from pprint import pprint
 >>> search_result = searcher.search('The Hills')
 >>> pprint(search_result)
->>> {'Places': [<wikisearch.article.ArticleLink object at 0x00000208A22EFAC0>,
+{'Places': [<wikisearch.article.ArticleLink object at 0x00000208A22EFAC0>,
             <wikisearch.article.ArticleLink object at 0x00000208A22EF7F0>,
             <wikisearch.article.ArticleLink object at 0x00000208A22EF6A0>,
             <wikisearch.article.ArticleLink object at 0x00000208A22EF400>,
